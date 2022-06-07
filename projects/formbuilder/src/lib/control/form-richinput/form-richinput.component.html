@@ -1,0 +1,13 @@
+<ng-container *ngIf="data.mode=='op'; else detail">
+  <form-box #box [mainCarry]="detail" [name]="data.name" [controltype]="data.controltype" (controlclick)="onClick($event)"></form-box>
+</ng-container>
+<ng-template #detail>
+    <d-form-item>
+        <d-form-label [required]="data.required" [hasHelp]="data.help" [helpTips]="data.helptip||''">{{data.label}}</d-form-label>
+        <d-form-control style="flex: 1;" [ngStyle]="{'width':canvasInfo.layout=='horizontal'?'0px':'100%'}">
+          <div class="mianrichinput">
+            <ckeditor [editor]="editor" [(ngModel)]="data.defaultvalue"></ckeditor>
+          </div>
+        </d-form-control>
+      </d-form-item>
+</ng-template>

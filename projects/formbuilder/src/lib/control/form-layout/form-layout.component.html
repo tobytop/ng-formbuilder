@@ -1,0 +1,12 @@
+<ng-container *ngIf="data.mode=='op'; else detail">
+    <form-box #box [mainCarry]="detail" [name]="data.name" [controltype]="data.controltype" (controlclick)="onClick($event)" [additionalcss]="'add-control-area'"></form-box>
+</ng-container>
+<ng-template #detail>
+  <d-row [attr.data-box-id]="data.name" [dGutter]="[ 12, 12]" [ngClass]="{'row-style':data.mode=='op'}">
+    <d-col [attr.data-box-id]="item.name" [dSpan]="12" *ngFor="let item of data.defaultvalue;let index=index">
+      <div [class.box]="data.mode == 'op'" [attr.data-box-id]="item.name" [ngClass]="{'selected':item.selected && data.mode=='op'}">
+        <form-area [name]="item.name" [mode]="data.mode" [originalLayout] = "originallayouts.get(item.name)||[]" (onaddrow)="onAddrow()" (onremoverow)="onRemoverow($event)"></form-area>
+      </div>
+    </d-col>
+  </d-row>
+</ng-template>

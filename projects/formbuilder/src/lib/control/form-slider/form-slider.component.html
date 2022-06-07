@@ -1,0 +1,23 @@
+<ng-container *ngIf="data.mode=='op'; else detail">
+    <form-box #box [mainCarry]="detail" [name]="data.name" [controltype]="data.controltype" (controlclick)="onClick($event)"></form-box>
+</ng-container>
+<ng-template #detail>
+    <d-form-item>
+        <d-form-label [required]="data.required" [hasHelp]="data.help" [helpTips]="data.helptip||''">{{data.label}}</d-form-label>
+        <d-form-control>
+            <div class="slider-wrapper">
+                <d-slider 
+                [attr.name]="data.controlname" 
+                [(ngModel)]="data.defaultvalue" 
+                [min]="data.min" 
+                [max]="data.max" 
+                [step]="data.step" 
+                [dValidateRules]="data.rules" 
+                [disabled]="data.disabled"
+                class="slider"></d-slider>
+                <span>{{ data.min }}</span>
+                <span>{{ data.max }}</span>
+            </div>
+        </d-form-control>
+    </d-form-item>
+</ng-template>

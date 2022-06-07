@@ -1,0 +1,24 @@
+<ng-container *ngIf = "mode=='op'; else detail">
+    <div class="all-canvas" formdrop [attr.data-box-id]="name">
+        <ng-template formdragtemplate>
+            <div *ngIf="ismain" data-box-id="shadowbox">
+                <div class="shadow"></div>
+            </div>
+        </ng-template>
+        <div style="flex-grow: 1;" data-box-id="mainarea">
+            <ng-container #aftershadow></ng-container>
+        </div>
+    </div>
+    <div *ngIf="!ismain" style="height: 16px;" [attr.data-box-id]="name">
+        <div [attr.data-box-id]="name" style="flex-direction: row-reverse;margin-right: -2px;" [ngStyle]="{'display':showOptions ? 'flex':'none'}">
+            <div [attr.data-box-id]="name" class="control-remove" (click)="removeRow($event)"><i class="fc-icon icon-delete control-icon"></i></div>
+            <div [attr.data-box-id]="name" class="control-add" (click)="addRow($event)"><i class="fc-icon icon-add font-color control-icon"></i></div>
+        </div>
+    </div>    
+</ng-container>
+<ng-template #detail>
+    <div class="all-canvas" [attr.data-box-id]="name">
+        <ng-template formdragtemplate>  
+        </ng-template>
+    </div>
+</ng-template>

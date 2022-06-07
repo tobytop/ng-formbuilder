@@ -1,0 +1,43 @@
+@import '~ng-devui/styles-var/devui-var.scss';
+
+.layout-wrapper {
+  box-shadow: $devui-shadow-length-base $devui-light-shadow;
+  margin-top: 36px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+  height: 100%;
+}
+
+d-header {
+  line-height: 40px;
+  background-color: $devui-base-bg-dark; // TODO: color not variable
+  color: $devui-light-text;
+}
+
+d-aside {
+  min-height: 200px;
+  min-width: 350px;
+  background-color: $devui-base-bg;
+}
+
+d-content {
+  background-color: $devui-global-bg;
+}
+.bottonbar {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  height: 100%;
+}
+.compbar {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.attributbar {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}

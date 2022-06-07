@@ -1,0 +1,64 @@
+.compmain {
+    height: 100%;
+    width: 232px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+.title {
+    padding: 10px 0 0 10px;
+    font-weight: bold;
+}
+.icon-box {
+    overflow: hidden;
+    margin: 10px;
+}
+
+.icon-list {
+    overflow: hidden;
+    padding-left: 0;
+    margin: 0px;
+}
+
+.icon-list li {
+    list-style: none;
+    position: relative;
+    display: block;
+    float: left;
+    height: 70px;
+    text-align: center;
+    margin: 0 auto;
+    width: 70px;
+    padding: 4px;
+}
+
+.icon-list li:hover {
+    cursor: move;
+    background-color: lightblue;
+}
+
+.icon-list li .icon-content {
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.icon-list li .icon-name {
+    display: block;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    color: #252b3a;
+    color: var(--devui-text,#252b3a);
+    font-size: 12px;
+    text-align: center;
+    margin-top: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.icon-size {
+    font-size: 20px;
+    font-weight: bold;
+}

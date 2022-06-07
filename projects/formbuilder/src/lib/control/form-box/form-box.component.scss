@@ -1,0 +1,72 @@
+@import '~ng-devui/styles-var/devui-var.scss';
+
+.control-border{
+    position: relative;
+}
+.control-area {
+    position: relative;
+    margin-bottom: 5px;
+    padding: 10px 10px 0px 10px;
+    border: 2px dashed $devui-brand-hover;
+    border-radius: 5px;
+}
+
+.selected,
+.control-area:hover
+{
+    border: 2px solid $devui-brand;
+}
+.drag-shadow-hide{
+    display: none;
+}
+
+.drag-fade {
+    background-color: $devui-initial;
+    border-radius: 5px;
+}
+.drag-shadow {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    z-index: 999;
+}
+
+.control-move {
+    cursor: move;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 20px;
+    height: 21px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: $devui-brand;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-top: 4px;
+}
+
+.control-remove {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    cursor: pointer;
+    width: 22px;
+    text-align: center;
+    border-bottom-right-radius: 5px;
+    background-color: $devui-danger;
+}
+
+.control-icon {
+    font-size: 14px;
+}
+.font-color{
+    color: #fff;
+}
+.add-control-area{
+    padding: 0px;
+}

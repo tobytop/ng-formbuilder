@@ -1,0 +1,12 @@
+
+<div [dMovable]="true" [handle]="header" [moveEl]="parent">
+  <div class="modal-header" #header>编辑数据</div>
+  <div class="modal-body">
+    <ngx-codemirror #editor [(ngModel)]="content" [options]="options"></ngx-codemirror>
+  </div>
+  <div class="modal-footer">
+    <d-button (click)="close($event)" bsStyle="primary" circled="true">确定</d-button>
+    <d-button (click)="cancel($event)" bsStyle="primary" circled="true">取消</d-button>
+  </div>
+  <i class="icon-close" (click)="cancel($event)"></i>
+</div>

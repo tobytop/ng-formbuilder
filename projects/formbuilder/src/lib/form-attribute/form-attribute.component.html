@@ -1,0 +1,654 @@
+<section class="space">
+    <d-toast [value]="msgs"></d-toast>
+    <d-tabs [(activeTab)]="tab1acticeID"  class="tabcenter">
+        <d-tab id="tab1" title="控件属性" tabId="tab1" [disabled]="isDisable">
+          <ng-template dTabContent>
+            <ng-container [ngSwitch]="activeLayout">
+              <ng-container *ngSwitchCase="controlType.Input" [ngTemplateOutlet]="input"></ng-container>
+              <ng-container *ngSwitchCase="controlType.RichIput" [ngTemplateOutlet]="richinput"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Counter" [ngTemplateOutlet]="counter"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Toggle" [ngTemplateOutlet]="toggle"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Select" [ngTemplateOutlet]="select"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Alert" [ngTemplateOutlet]="alert"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Check" [ngTemplateOutlet]="check"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Radio" [ngTemplateOutlet]="radio"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Date" [ngTemplateOutlet]="date"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Time" [ngTemplateOutlet]="time"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Rate" [ngTemplateOutlet]="rate"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Space" [ngTemplateOutlet]="space"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Divider" [ngTemplateOutlet]="divider"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Upload" [ngTemplateOutlet]="upload"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Slide" [ngTemplateOutlet]="slide"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Transfer" [ngTemplateOutlet]="transfer"></ng-container>
+              <ng-container *ngSwitchCase="controlType.Tree" [ngTemplateOutlet]="tree"></ng-container>
+              <ng-container *ngSwitchDefault></ng-container>
+            </ng-container>
+          </ng-template>
+        </d-tab>
+    
+        <d-tab id="tab2" title="表单属性" tabId="tab2">
+          <ng-template dTabContent>
+            <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+              <d-form-item>
+                <d-form-label>表单布局</d-form-label>
+                <d-form-control>
+                  <d-select [options]="layoutOptions" name="layout" [filterKey]="'name'" [(ngModel)]="canvasInfo.layout" (valueChange)="onchange()"></d-select>
+                </d-form-control>
+              </d-form-item>
+              <d-form-item>
+                <d-form-label>label占宽</d-form-label>
+                <d-form-control>
+                  <d-select [options]="labelSizeOptions" name="labelSize" [filterKey]="'name'" [(ngModel)]="canvasInfo.labelSize" (valueChange)="onchange()"></d-select>
+                </d-form-control>
+              </d-form-item>
+              <d-form-item>
+                <d-form-label>label对齐</d-form-label>
+                <d-form-control>
+                  <d-select [options]="labelAlignOptions" name="labelAlign" [filterKey]="'name'" [(ngModel)]="canvasInfo.labelAlign" (valueChange)="onchange()"></d-select>
+                </d-form-control>
+              </d-form-item>
+            </form>
+          </ng-template>
+        </d-tab>
+    </d-tabs>
+</section>
+<ng-template #common>
+  <d-form-item>
+    <d-form-label>标签名</d-form-label>
+    <d-form-control>
+      <input dTextInput name="labelName" [(ngModel)]="formData.label"/>
+    </d-form-control>
+  </d-form-item>
+  <d-form-item>
+    <d-form-label>控件名称</d-form-label>
+    <d-form-control>
+      <input dTextInput name="controlName" [(ngModel)]="formData.controlname"/>
+    </d-form-control>
+  </d-form-item>
+  <d-form-item>
+    <d-row>
+      <d-col [dSpan]="12">
+        <d-form-label>是否禁用</d-form-label>
+      <d-form-control>
+        <d-toggle name="disabled" [(ngModel)]="formData.disabled"></d-toggle>
+      </d-form-control>
+      </d-col>
+      <d-col [dSpan]="12">
+        <d-form-label>是否必填</d-form-label>
+        <d-form-control>
+          <d-toggle name="required" [(ngModel)]="formData.required"></d-toggle>
+        </d-form-control>
+      </d-col>
+    </d-row>
+  </d-form-item>
+  <d-form-item>
+    <d-form-label>是否帮助</d-form-label>
+    <d-form-control>
+      <d-toggle name="help" [(ngModel)]="formData.help"></d-toggle>
+    </d-form-control>
+  </d-form-item>
+  <d-form-item *ngIf="formData.help">
+    <d-form-label>帮助文本</d-form-label>
+    <d-form-control>
+      <input dTextInput name="helptip" [(ngModel)]="formData.helptip" />
+    </d-form-control>
+  </d-form-item>
+</ng-template>
+
+<ng-template #input>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <d-form-item>
+      <d-form-label>默认值</d-form-label>
+      <d-form-control>
+        <input dTextInput name="defaultName" [(ngModel)]="formData.defaultvalue" />
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>占位文本</d-form-label>
+      <d-form-control>
+        <input dTextInput name="placeholder" [(ngModel)]="formData.placeholder" />
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+    <ng-container [ngTemplateOutlet]="validator">
+    </ng-container>
+  </form>
+</ng-template>
+
+<ng-template #transfer>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <d-form-item>
+      <d-form-label>源头标题</d-form-label>
+      <d-form-control>
+        <input dTextInput name="source" [(ngModel)]="formData.source" />
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>目标标题</d-form-label>
+      <d-form-control>
+        <input dTextInput name="target" [(ngModel)]="formData.target" />
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+    <ng-container [ngTemplateOutlet]="data">
+    </ng-container>
+  </form>
+</ng-template>
+
+<ng-template #tree>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <d-form-item>
+      <d-form-label>占位文本</d-form-label>
+      <d-form-control>
+        <input dTextInput name="placeholder" [(ngModel)]="formData.placeholder" />
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+    <ng-container [ngTemplateOutlet]="data">
+    </ng-container>
+  </form>
+</ng-template>
+
+<ng-template #richinput>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <d-form-item>
+      <d-form-label>默认值</d-form-label>
+      <d-form-control>
+        <input dTextInput name="defaultName" [(ngModel)]="formData.defaultvalue" />
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+  </form>
+</ng-template>
+
+<ng-template #counter>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <d-form-item>
+      <d-form-label>默认值</d-form-label>
+      <d-form-control>
+        <d-input-number name="defaultName" [step]="1" [(ngModel)]="formData.defaultvalue"></d-input-number>
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+    <d-form-item>
+      <d-row>
+        <d-col [dSpan]="12">
+          <d-form-label>最小值</d-form-label>
+          <d-form-control>
+            <d-input-number name="min" [step]="1" [(ngModel)]="formData.min"></d-input-number>
+          </d-form-control>
+        </d-col>
+        <d-col [dSpan]="12">
+          <d-form-label>最大值</d-form-label>
+            <d-form-control>
+            <d-input-number name="max" [step]="1" [(ngModel)]="formData.max"></d-input-number>
+          </d-form-control>
+        </d-col>
+      </d-row>
+    </d-form-item>
+    <d-form-item>
+      <d-row>
+        <d-col [dSpan]="12">
+          <d-form-label>步长</d-form-label>
+          <d-form-control>
+            <d-input-number name="step" [step]="1" [(ngModel)]="formData.step"></d-input-number>
+          </d-form-control>
+        </d-col>
+        <d-col [dSpan]="12">
+          <d-form-label>单位</d-form-label>
+          <d-form-control>
+            <input dTextInput name="unit" [(ngModel)]="formData.unit"/>
+          </d-form-control>
+        </d-col>
+      </d-row>
+    </d-form-item>
+  </form>
+</ng-template>
+
+<ng-template #toggle>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <d-form-item>
+      <d-form-label>默认值</d-form-label>
+      <d-form-control>
+        <d-toggle name="defaultName" [(ngModel)]="formData.defaultvalue"></d-toggle>
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+  </form>
+</ng-template>
+
+<ng-template #select>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <!-- <d-form-item>
+      <d-form-label>默认值</d-form-label>
+      <d-form-control>
+        <input dTextInput name="defaultName" [(ngModel)]="formData.defaultvalue" />
+      </d-form-control>
+    </d-form-item> -->
+    <d-form-item>
+      <d-form-label>占位文本</d-form-label>
+      <d-form-control>
+        <input dTextInput name="placeholder" [(ngModel)]="formData.placeholder" />
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+    <d-form-item>
+      <d-form-label>显示字段</d-form-label>
+      <d-form-control>
+        <input dTextInput name="filter" [(ngModel)]="formData.filter" />
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="data">
+    </ng-container>
+    <d-form-item>
+      <d-form-label>是否多选</d-form-label>
+      <d-form-control>
+        <d-toggle name="multiple" [(ngModel)]="formData.multiple"></d-toggle>
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="validator">
+    </ng-container>
+  </form>
+</ng-template>
+
+<ng-template #data>
+  <d-form-item>
+    <d-form-label>数据选项</d-form-label>
+    <d-form-control>
+      <d-tabs [(activeTab)]="formData.dataType" type="options" customWidth="100px">
+        <d-tab [id]="'static'" title="静态数据">
+          <ng-template dTabContent>
+            <d-button bsStyle="common" style="margin-right: 8px;width: 100%;" width="100%" (btnClick)="showCodeEditor(formData.options,'options')" >编辑数据</d-button>
+          </ng-template>
+        </d-tab>
+        <d-tab [id]="'interface'" title="接口数据">
+          <ng-template dTabContent>
+            <div class="tabshow">
+              <d-form-item>
+                <d-form-label>接口</d-form-label>
+                <d-form-control>
+                  <input dTextInput name="url" [(ngModel)]="formData.postdata.url" />
+                </d-form-control>
+              </d-form-item>
+              <d-form-item>
+                <d-form-label>请求方式</d-form-label>
+                <d-form-control>
+                  <d-select name="method" [placeholder]="'请选择'" [options]="methodtype" [(ngModel)]="formData.postdata.method"></d-select>
+                </d-form-control>
+              </d-form-item>
+              <d-form-item>
+                <d-form-label>附带数据</d-form-label>
+                <d-form-control>
+                  <d-button bsStyle="common" style="margin-right: 8px;width: 100%;" width="100%" (btnClick)="showCodeEditor(formData.postdata.data,'postdata.data')" >编辑数据</d-button>
+                </d-form-control>
+              </d-form-item>
+              <d-form-item>
+                <d-form-label>头部信息</d-form-label>
+                <d-form-control>
+                  <d-button bsStyle="common" style="margin-right: 8px;width: 100%;" width="100%" (btnClick)="showCodeEditor(formData.postdata.head,'postdata.head')" >编辑数据</d-button>
+                </d-form-control>
+              </d-form-item>
+              <d-form-item *ngIf="formData.controltype != controlType.Tree">
+                <d-form-label>解析函数</d-form-label>
+                <d-form-control>
+                  <textarea dTextarea placeholder="请输入" name="function" [(ngModel)]="formData.postdata.function"></textarea>
+                </d-form-control>
+              </d-form-item>
+              <d-form-item>
+                <d-form-control>
+                  <d-button bsStyle="common" style="margin-right: 8px;width: 100%;" width="100%" (btnClick)="onTestData(formData.name)">载入数据</d-button>
+                </d-form-control>
+              </d-form-item>
+            </div>
+          </ng-template>
+        </d-tab>
+      </d-tabs>
+    </d-form-control>
+  </d-form-item>
+</ng-template>
+
+<ng-template #alert>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <d-form-item>
+      <d-form-label>显示值</d-form-label>
+      <d-form-control>
+        <input dTextInput name="label" [(ngModel)]="formData.label" />
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>警告类型</d-form-label>
+      <d-form-control>
+        <d-select [options]="alerttype" name="alerttype" [(ngModel)]="formData.alerttype"></d-select>
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>是否关闭</d-form-label>
+      <d-form-control>
+        <d-toggle name="closeable" [(ngModel)]="formData.closeable"></d-toggle>
+      </d-form-control>
+    </d-form-item>
+  </form>
+</ng-template>
+
+<ng-template #check>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+    <d-form-item>
+      <d-form-label>显示方向</d-form-label>
+      <d-form-control>
+        <d-select [options]="direction" name="direction" [(ngModel)]="formData.direction"></d-select>
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>显示标题</d-form-label>
+      <d-form-control>
+        <d-toggle name="isshowtitle" [(ngModel)]="formData.isshowtitle"></d-toggle>
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>显示字段</d-form-label>
+      <d-form-control>
+        <input dTextInput name="filter" [(ngModel)]="formData.filter" />
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="data">
+    </ng-container>
+    <ng-container [ngTemplateOutlet]="validator">
+    </ng-container>
+  </form>
+</ng-template>
+
+<ng-template #radio>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+    <d-form-item>
+      <d-form-label>显示方向</d-form-label>
+      <d-form-control>
+        <d-select [options]="direction" name="direction" [(ngModel)]="formData.direction"></d-select>
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="data">
+    </ng-container>
+    <ng-container [ngTemplateOutlet]="validator">
+    </ng-container>
+  </form>
+</ng-template>
+
+<ng-template #date>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+    <d-form-item>
+      <d-form-label>日期类型</d-form-label>
+      <d-form-control>
+        <d-select [options]="datetype" name="datetype" [(ngModel)]="formData.datetype" (valueChange)="onChangeDateTypeOrFormat()"></d-select>
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>日期格式</d-form-label>
+      <d-form-control>
+        <d-select [options]="dateFormat" name="dateFormat" [(ngModel)]="formData.dateFormat" (valueChange)="onChangeDateTypeOrFormat()"></d-select>
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>是否显示时间</d-form-label>
+      <d-form-control>
+        <d-toggle name="showtime" [(ngModel)]="formData.showtime"></d-toggle>
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="validator">
+    </ng-container>
+  </form>
+</ng-template>
+
+<ng-template #time>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+    <d-form-item>
+      <d-form-label>日期格式</d-form-label>
+      <d-form-control>
+        <d-select [options]="timeFormat" name="format" [(ngModel)]="formData.format" (valueChange)="onChangeTimeFormat()"></d-select>
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="validator">
+    </ng-container>
+  </form>
+</ng-template>
+
+<ng-template #rate>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <d-form-item>
+      <d-form-label>默认值</d-form-label>
+      <d-form-control>
+        <d-input-number name="defaultName" [step]="1" [(ngModel)]="formData.defaultvalue"></d-input-number>
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+    <d-form-item>
+      <d-form-label>是否半值</d-form-label>
+      <d-form-control>
+        <d-toggle name="allowhalf" [(ngModel)]="formData.allowhalf"></d-toggle>
+      </d-form-control>
+    </d-form-item>
+  </form>
+</ng-template>
+
+<ng-template #space>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <d-form-item>
+      <d-form-label>高度</d-form-label>
+      <d-form-control>
+        <d-input-number name="height" [step]="1" [(ngModel)]="formData.height"></d-input-number>
+      </d-form-control>
+    </d-form-item>
+  </form>
+</ng-template>
+
+<ng-template #divider>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <d-form-item>
+      <d-form-label>显示文本</d-form-label>
+      <d-form-control>
+        <input dTextInput name="label" [(ngModel)]="formData.label" />
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>文本位置</d-form-label>
+      <d-form-control>
+        <d-select [options]="alignFormat"[(ngModel)]="formData.alignvalue" name="align" [filterKey]="'label'" (valueChange)="onChangeAlignFormat($event)"></d-select>
+      </d-form-control>
+    </d-form-item>
+  </form>
+</ng-template>
+
+<ng-template #upload>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+    <d-form-item>
+      <d-form-label>接口</d-form-label>
+      <d-form-control>
+        <input dTextInput name="url" [(ngModel)]="formData.uploadOptions.uri" />
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>请求方式</d-form-label>
+      <d-form-control>
+        <d-select name="method" [placeholder]="'请选择'" [options]="methodtype" [(ngModel)]="formData.uploadOptions.method"></d-select>
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>附带数据</d-form-label>
+      <d-form-control>
+        <d-button bsStyle="common" style="margin-right: 8px;width: 100%;" width="100%" (btnClick)="showCodeEditor(formData.uploadOptions.additionalParameter,'uploadOptions.additionalParameter')" >编辑数据</d-button>
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>头部信息</d-form-label>
+      <d-form-control>
+        <d-button bsStyle="common" style="margin-right: 8px;width: 100%;" width="100%" (btnClick)="showCodeEditor(formData.uploadOptions.headers,'uploadOptions.headers')" >编辑数据</d-button>
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>上传文件大小限制</d-form-label>
+      <d-form-control>
+        <d-input-number name="maximumSize" [step]="1" [(ngModel)]="formData.uploadOptions.maximumSize"></d-input-number>
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>文件名称</d-form-label>
+      <d-form-control>
+        <input dTextInput name="fileFieldName" [(ngModel)]="formData.uploadOptions.fileFieldName" />
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>返回数据类型</d-form-label>
+      <d-form-control>
+        <d-select [options]="responseType" name="responseType" [(ngModel)]="formData.uploadOptions.responseType"></d-select>
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>文件类型</d-form-label>
+      <d-form-control>
+        <input dTextInput name="accept" [(ngModel)]="formData.fileOptions.accept" />
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>可选择多个值</d-form-label>
+      <d-form-control>
+        <d-toggle name="multiple" [(ngModel)]="formData.fileOptions.multiple"></d-toggle>
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="validator">
+    </ng-container>
+  </form>
+</ng-template>
+
+<ng-template #validator>
+  <d-form-item style="margin: 0px;">
+    <d-form-control>
+      <div class="form-divider form-divider-horizontal">
+          <div class="form-divider__text is-center">控件验证</div>
+      </div>
+    </d-form-control>
+  </d-form-item>
+  <d-form-item>
+    <d-row *ngFor="let validator of validators;index as i;">
+      <d-col [dSpan]="8" style="padding-right: 3px;">
+        <d-form-label>验证类型</d-form-label>
+        <d-form-control>
+          <d-select name="validatortype" 
+          (valueChange)="onChangeItem($event,validator)" 
+          [placeholder]="'请选择'" 
+          [filterKey]="'label'" 
+          [optionDisabledKey]="'disabled'" 
+          [options]="validator.validatorOptions" 
+          [(ngModel)]="validator.validatortype"></d-select>
+        </d-form-control>
+      </d-col>
+      <d-col [dSpan]="12">
+        <d-form-label>值</d-form-label>
+        <d-form-control>
+          <ng-container [ngSwitch]="validator.validatortype.label">
+            <ng-container *ngSwitchCase="'required'" [ngTemplateOutlet]="required"></ng-container>
+            <ng-container *ngSwitchCase="'email'" [ngTemplateOutlet]="required"></ng-container>
+            <ng-container *ngSwitchCase="'whitespace'" [ngTemplateOutlet]="required"></ng-container>
+            <ng-container *ngSwitchCase="'pattern'" [ngTemplateOutlet]="pattern"></ng-container>
+            <ng-container *ngSwitchCase="'minlength'">
+              <ng-container *ngTemplateOutlet="num; context:{$implicit:5,max:128};">
+              </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="'maxlength'">
+              <ng-container *ngTemplateOutlet="num; context:{$implicit:5,max:128};">
+              </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="'min'">
+              <ng-container *ngTemplateOutlet="num; context:{$implicit:0,max:100};">
+              </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="'max'">
+              <ng-container *ngTemplateOutlet="num; context:{$implicit:0,max:100};">
+              </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchDefault></ng-container>
+          </ng-container>
+          <ng-template #pattern>
+            <input dTextInput name="value" [(ngModel)]="validator.value" (change)="onChangeValidateValue(validator)"/>
+          </ng-template>
+          <ng-template #required>
+            <div style="padding-top: 3px;">
+              <d-toggle [color]="'#50D4AB'" [disabled]="true"  [(ngModel)]="validator.value" [checkedContent]="iconCheckedContent" [uncheckedContent]="iconUncheckedContent"></d-toggle>
+              <ng-template #iconCheckedContent>
+                <div class="toggle-inner">
+                  <i class="icon-right"></i>
+                </div>
+              </ng-template>
+              <ng-template #iconUncheckedContent>
+                <div class="toggle-inner">
+                  <i class="icon-error"></i>
+                </div>
+              </ng-template>
+            </div>
+          </ng-template>
+          <ng-template #num let-min let-max ="max">
+            <d-input-number name="height" [min]="min" [max]="max" [step]="1" style="width: 100%;" [(ngModel)]="validator.value" (ngModelChange)="onChangeValidateValue(validator)"></d-input-number>
+          </ng-template>
+        </d-form-control>
+      </d-col>
+      <d-col [dSpan]="4">
+        <div class="btn-group">
+          <d-button icon="fc-icon icon-add icon-font" bsStyle="text-dark" title="添加" width="21px" (btnClick)="onAddValidationRule()"></d-button>
+          <d-button icon="fc-icon icon-delete icon-font" bsStyle="text-dark" [disabled]="validators.length==1" title="删除" width="22px" (btnClick)="onRemoveRule(i)"></d-button>
+        </div>
+      </d-col>
+    </d-row>
+  </d-form-item>
+</ng-template>
+
+<ng-template #slide>
+  <form dForm [layout]="layoutDirection" [labelSize]="'sm'">
+    <d-form-item>
+      <d-form-label>默认值</d-form-label>
+      <d-form-control>
+        <d-input-number name="defaultName" [step]="1" [(ngModel)]="formData.defaultvalue"></d-input-number>
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="common">
+    </ng-container>
+    <d-form-item>
+      <d-row>
+        <d-col [dSpan]="12">
+          <d-form-label>最小值</d-form-label>
+          <d-form-control>
+            <d-input-number name="min" [step]="1" [(ngModel)]="formData.min"></d-input-number>
+          </d-form-control>
+        </d-col>
+        <d-col [dSpan]="12">
+          <d-form-label>最大值</d-form-label>
+            <d-form-control>
+            <d-input-number name="max" [step]="1" [(ngModel)]="formData.max"></d-input-number>
+          </d-form-control>
+        </d-col>
+      </d-row>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>步长</d-form-label>
+      <d-form-control>
+        <d-input-number name="step" [step]="1" [(ngModel)]="formData.step"></d-input-number>
+      </d-form-control>
+    </d-form-item>
+    <ng-container [ngTemplateOutlet]="validator">
+    </ng-container>
+  </form>
+</ng-template>

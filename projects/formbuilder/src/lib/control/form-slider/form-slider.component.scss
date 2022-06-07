@@ -1,0 +1,14 @@
+.slider-wrapper {
+    position: relative;
+  
+    span {
+      position: absolute;
+      top: 15px;
+  
+      &:last-child {
+        right: 0;
+      }
+    }
+}
+
+  

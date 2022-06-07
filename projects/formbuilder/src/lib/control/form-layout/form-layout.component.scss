@@ -1,0 +1,25 @@
+@import '~ng-devui/styles-var/devui-var.scss';
+
+.box {
+    border: 2px dashed $devui-brand-hover;
+    border-radius: 5px;
+}
+
+.selected,
+.box:hover {
+    border: 2px solid $devui-brand;
+}
+
+.row-style{
+    padding: 10px 3px 3px 3px;
+}
+
+d-col:nth-child(odd) > div{
+    margin-right: 3px;
+    margin-bottom: 3px;
+}
+
+d-col:nth-child(even) > div{
+    margin-left: 2px;
+    margin-bottom: 3px;
+}

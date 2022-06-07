@@ -1,0 +1,40 @@
+@import '~ng-devui/styles-var/devui-var.scss';
+
+.all-canvas{
+    min-height: 80px;
+    flex: 1;
+    background:#fff;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.shadow {
+    margin: 10px;
+    height: 10px;
+    border: 2px solid $devui-brand;
+    border-radius: 5px;
+}
+
+.control-remove {
+    cursor: pointer;
+    width: 20px;
+    text-align: center;
+    border-bottom-right-radius: 5px;
+    background-color: $devui-danger;
+}
+.control-add {
+    cursor: pointer;
+    width: 22px;
+    text-align: center;
+    background-color: $devui-brand;
+}
+.control-icon{
+    font-size: 14px;
+}
+.font-color{
+    color: #fff;
+}
+[hidden] {
+    display: none;
+  }

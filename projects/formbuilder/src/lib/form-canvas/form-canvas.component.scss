@@ -1,0 +1,11 @@
+.all-area {
+    background:#ccc;
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+.all-area:-moz-drag-over {
+    border: 1px solid black;
+  }

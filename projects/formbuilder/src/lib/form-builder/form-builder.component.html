@@ -1,0 +1,19 @@
+<d-layout class="layout-wrapper">
+    <d-header >
+      <div class="bottonbar">
+        <d-button style="margin-right: 8px" (btnClick)="sendBuilderEvent()">保存</d-button>
+        <d-button style="margin-right: 8px" (btnClick)="openPreview()">预览</d-button>
+      </div>
+    </d-header>
+    <d-layout style="overflow: hidden;">
+      <d-aside class="compbar" style="min-width:232px">
+        <form-component></form-component>
+      </d-aside>
+      <d-content style="overflow-y: hidden;">
+        <form-canvas [originalLayout]="inputLayout"></form-canvas>
+      </d-content>
+      <d-aside class="attributbar">
+        <form-attribute></form-attribute>
+      </d-aside>
+    </d-layout>
+</d-layout>

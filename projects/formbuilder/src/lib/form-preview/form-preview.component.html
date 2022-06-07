@@ -1,0 +1,16 @@
+<form 
+    dForm 
+    [formGroup]="userFormGroup"
+    [layout]="data.layout" 
+    [labelSize]="data.labelSize" 
+    [labelAlign]="data.labelAlign"
+    #thisform = "dValidateRules" 
+    [dValidateRules]="{message:'check this'}" 
+    (dSubmit)="submitPlanForm($event)" >
+    <ng-container #main>
+    </ng-container>
+    <d-form-operation *ngIf="showBtn">
+        <d-button dFormSubmit bsStyle="primary" class="mr-element-spacing" circled="true" style="margin-right: 4px">提交</d-button>
+        <d-button bsStyle="common" circled="true">取消</d-button>
+    </d-form-operation>
+</form>

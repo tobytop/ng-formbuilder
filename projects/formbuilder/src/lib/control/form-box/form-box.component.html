@@ -1,0 +1,15 @@
+<div [draggable]="canMove" (dragstart)="ondragstart($event)" [ngClass]="dragClass" (dragend)="ondragend($event)" (click)="onClick($event)">
+    <div class="control-border">
+       <ng-container #beforeshadow></ng-container>
+       <div class = "control-area" [ngClass]="[addcss,additionalcss]">
+          <ng-container #miancontrol [ngTemplateOutlet]="mainCarry"></ng-container>
+          <div *ngIf="showOptions">
+            <div class="control-move" (mousedown)="onMousedown($event)"><i class="fc-icon icon-move font-color control-icon"></i></div>
+            <div class="control-remove" (click)="onRemoveClick($event)"><i class="fc-icon icon-delete control-icon"></i></div>
+          </div>
+       </div>
+       <ng-container #aftershadow></ng-container>
+       <div [attr.data-box-id]="name" [attr.data-box-type]="controltype" class="drag-shadow" *ngIf="isShow"></div>
+    </div>
+</div>
+ 

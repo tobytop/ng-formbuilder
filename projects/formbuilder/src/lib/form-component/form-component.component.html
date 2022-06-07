@@ -1,0 +1,24 @@
+<div class="compmain">
+    <div class="title">表单组件</div>
+    <div class="icon-box">
+        <ul class="icon-list">
+            <li *ngFor="let item of formcontrollers" formdrag [controlinfo] = "item.controlinfo">
+                <div class="icon-content">
+                    <i class="icon icon-size" [class]="item.icon"></i>
+                </div>
+                <span class = "icon-name">{{item.text}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="title">辅助组件</div>
+    <div class="icon-box">
+        <ul class="icon-list">
+            <li *ngFor="let item of assistcontrollers" formdrag [controlinfo] = "item.controlinfo">
+                <div class="icon-content">
+                    <i class="icon icon-size" [class]="item.icon"></i>
+                </div>
+                <span class = "icon-name">{{item.text}}</span>
+            </li>
+        </ul>
+    </div>
+</div>

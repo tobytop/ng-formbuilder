@@ -1,0 +1,57 @@
+@import '~ng-devui/styles-var/devui-var.scss';
+
+.space {
+    width: 100%;
+    padding: 0 10px 10px 10px;
+  }
+  :host form {
+    width: 330px;
+    padding: 0 10px;
+  }
+
+.tabshow {
+    border: 2px solid $devui-brand;
+    padding: 5px;
+  }
+:host ::ng-deep{
+  section > d-tabs > ul {
+    position: sticky;
+    padding-top: 10px;
+    background: #fff !important;
+    top: 0;
+    z-index: 16;
+  }
+}
+:host ::ng-deep .btn-group d-button {
+  .icon-font{
+    font-size: 16px;
+  }
+}
+.btn-group{
+  margin-top: 18px;
+}
+
+.form-divider {
+  background-color: #DCDFE6;
+  position: relative;
+}
+
+.form-divider-horizontal {
+  display: block;
+  height: 1px;
+  width: 100%;
+  margin: 24px 0;
+}
+
+.form-divider__text {
+  position: absolute;
+  background-color: #FFF;
+  padding: 0 20px;
+  color: #303133;
+}
+
+.form-divider__text.is-center{
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}

@@ -1,0 +1,25 @@
+<ng-container *ngIf="data.mode=='op'; else detail">
+    <form-box #box [mainCarry]="detail" [name]="data.name" [controltype]="data.controltype" (controlclick)="onClick($event)"></form-box>
+  </ng-container>
+  <ng-template #detail>
+      <d-form-item>
+          <d-form-label [required]="data.required" [hasHelp]="data.help" [helpTips]="data.helptip||''">{{data.label}}</d-form-label>
+          <d-form-control>
+            <div>
+                <d-select 
+                [formControl]="control"
+                [attr.name]="data.controlname" 
+                [multiple]="data.multiple" 
+                [options]="data.options" 
+                [filterKey]="data.filter" 
+                [placeholder]="data.placeholder" 
+                [(ngModel)]="data.defaultvalue"
+                [extraConfig]="{
+                  labelization: { enable: true, overflow: 'multiple-line' }
+                }"
+                [dValidateRules]="data.rules"
+                [disabled]="data.disabled"></d-select>
+            </div>
+          </d-form-control>
+        </d-form-item>
+  </ng-template>

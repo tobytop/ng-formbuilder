@@ -1,0 +1,20 @@
+import { InjectionToken } from "@angular/core";
+
+export const FORM_ALERT = new InjectionToken("form-alert");
+export const FORM_CHECKBOX = new InjectionToken("form-checkbox");
+export const FORM_COUNTER = new InjectionToken("form-counter");
+export const FORM_DATE = new InjectionToken("form-date");
+export const FORM_DIVIDER = new InjectionToken("form-divider");
+export const FORM_INPUT = new InjectionToken("form-input");
+export const FORM_LAYOUT = new InjectionToken("form-layout");
+export const FORM_RADIO = new InjectionToken("form-radio");
+export const FORM_RATE = new InjectionToken("form-rate");
+export const FORM_RICHINPUT = new InjectionToken("form-richinput");
+export const FORM_SELECT = new InjectionToken("form-select");
+export const FORM_SLIDER = new InjectionToken("form-slider");
+export const FORM_SPACE = new InjectionToken("form-space");
+export const FORM_TIME = new InjectionToken("form-time");
+export const FORM_TOGGLE = new InjectionToken("form-toggle");
+export const FORM_TRANSFER = new InjectionToken("form-transfer");
+export const FORM_TREE = new InjectionToken("form-tree");
+export const FORM_UPLOAD = new InjectionToken("form-upload");

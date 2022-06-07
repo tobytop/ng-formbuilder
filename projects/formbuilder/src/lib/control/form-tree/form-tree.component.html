@@ -1,0 +1,21 @@
+<ng-container *ngIf="data.mode=='op'; else detail">
+    <form-box #box [mainCarry]="detail" [name]="data.name" [controltype]="data.controltype" (controlclick)="onClick($event)"></form-box>
+  </ng-container>
+  <ng-template #detail>
+      <d-form-item>
+          <d-form-label [required]="data.required" [hasHelp]="data.help" [helpTips]="data.helptip||''">{{data.label}}</d-form-label>
+          <d-form-control>
+            <d-cascader
+                [disabled]="data.disabled"
+                [attr.name]="data.controlname" 
+                [options]="data.options"
+                [placeholder]="data.placeholder"
+                [(ngModel)]="data.defaultvalue"
+                [trigger]="'click'"
+                [showPath]="true"
+                [allowClear]="true"
+                style="width:100%;"
+                ></d-cascader>
+          </d-form-control>
+        </d-form-item>
+  </ng-template>
