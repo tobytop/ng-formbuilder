@@ -1,6 +1,7 @@
 {
   "name": "@tobytop/ng-formbuilder",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "license": "MIT",
   "sideEffects": true,
   "peerDependencies": {
     "@angular/core": "^13.3.0",
