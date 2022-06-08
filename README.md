@@ -1,4 +1,3 @@
-<img src="https://img.shields.io/badge/language-typescript-blue.svg" alt="Language">
 <a href="https://www.npmjs.com/package/@tobytop/ng-formbuilder"><img src="https://img.shields.io/npm/v/@tobytop/ng-formbuilder" alt="Npm"></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/@tobytop/ng-formbuilder" alt="License"></a>
 
